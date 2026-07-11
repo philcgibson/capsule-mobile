@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Capsule",
+    "owner": "phil_stradx",
+    "slug": "capsule",
+    "scheme": "capsule",
+    "version": "1.0.0",
+    "description": "Private memory capsules for photos, notes, and the stories around them.",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.phil-stradx.capsule"
+    },
+    "android": {
+      "package": "com.philstradx.capsule",
+      "adaptiveIcon": {
+        "backgroundColor": "#FBF8F2",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Capsule to choose photos for your memories.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f4d119f1-8ed0-4b83-9158-767138c585d6"
+      }
+    }
+  }
+}
