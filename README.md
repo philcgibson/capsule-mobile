@@ -44,6 +44,8 @@ npx expo-doctor
 
 Production EAS builds also run the same preflight automatically before dependency installation. A build fails early if it would embed a local API, demo access, public discovery, or missing support/legal destinations. Ship to internal TestFlight before App Store review.
 
+The proposed iOS listing, reviewer walkthrough, and compliant screenshot plan live in [`docs/release/app-store-ios.md`](docs/release/app-store-ios.md). Bracketed legal/contact fields remain intentionally unresolved.
+
 Start Metro for a development build:
 
 ```bash
