@@ -25,6 +25,8 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "release:check": "node scripts/release-check.mjs",
+    "eas-build-pre-install": "node scripts/eas-preflight.mjs",
     "start": "expo start --dev-client",
     "start:review": "expo start --dev-client --port 8082 --localhost",
     "start:go": "expo start",

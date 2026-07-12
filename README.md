@@ -35,6 +35,15 @@ Set `EXPO_PUBLIC_ENABLE_DEMO_OWNER=true` only for local demos that should show t
 
 Public discovery is disabled by default. Show the Explore tab only in an environment where both `EXPO_PUBLIC_ENABLE_PUBLIC_DISCOVERY=true` in the mobile build and `CAPSULE_PUBLIC_DISCOVERY=true` on the API are deliberately configured. Keep both false for the first private, invite-only release.
 
+Before requesting a production EAS build, configure the production environment from `.env.production.example` in EAS and run:
+
+```bash
+npm run release:check
+npx expo-doctor
+```
+
+Production EAS builds also run the same preflight automatically before dependency installation. A build fails early if it would embed a local API, demo access, public discovery, or missing support/legal destinations. Ship to internal TestFlight before App Store review.
+
 Start Metro for a development build:
 
 ```bash

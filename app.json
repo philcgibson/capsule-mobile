@@ -15,7 +15,10 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.phil-stradx.capsule"
+      "bundleIdentifier": "com.phil-stradx.capsule",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.philstradx.capsule",
