@@ -7,6 +7,8 @@ import { colors, fonts } from "@/lib/theme";
 
 export default function TabLayout() {
   const { bootstrapping, isAuthenticated } = useSession();
+  const publicDiscoveryEnabled =
+    process.env.EXPO_PUBLIC_ENABLE_PUBLIC_DISCOVERY === "true";
 
   if (bootstrapping) {
     return (
@@ -58,13 +60,15 @@ export default function TabLayout() {
         />
         <NativeTabs.Trigger.Label>Add</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Icon
-          sf={{ default: "safari", selected: "safari.fill" }}
-          md={{ default: "explore", selected: "explore" }}
-        />
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
-      </NativeTabs.Trigger>
+      {publicDiscoveryEnabled ? (
+        <NativeTabs.Trigger name="explore">
+          <NativeTabs.Trigger.Icon
+            sf={{ default: "safari", selected: "safari.fill" }}
+            md={{ default: "explore", selected: "explore" }}
+          />
+          <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
+        </NativeTabs.Trigger>
+      ) : null}
     </NativeTabs>
   );
 }

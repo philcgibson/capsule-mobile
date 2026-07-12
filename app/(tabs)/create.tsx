@@ -7,7 +7,6 @@ import {
   ActivityIndicator,
   Alert,
   Image,
-  type ImageSourcePropType,
   Pressable,
   ScrollView,
   Text,
@@ -32,8 +31,6 @@ import {
   type,
 } from "@/lib/theme";
 
-const defaultCover = require("../../assets/reference/create-cover-thumb.png");
-
 export default function CreateCapsuleRoute() {
   const { token } = useSession();
   const [title, setTitle] = useState("");
@@ -46,7 +43,7 @@ export default function CreateCapsuleRoute() {
 
   const titleReady = title.trim().length > 0;
   const canCreate = Boolean(token && titleReady && !creating);
-  const previewSource = initialPhoto ? { uri: initialPhoto.uri } : defaultCover;
+  const previewSource = initialPhoto ? { uri: initialPhoto.uri } : null;
 
   useFocusEffect(
     useCallback(() => {
@@ -343,7 +340,7 @@ function SelectedCoverObject({
   usingPhoto,
   onPress,
 }: {
-  source: ImageSourcePropType;
+  source: { uri: string } | null;
   picking: boolean;
   usingPhoto: boolean;
   onPress: () => void;
@@ -364,21 +361,25 @@ function SelectedCoverObject({
         opacity: pressed ? 0.88 : 1,
       })}
     >
-      <Image
-        source={source}
-        resizeMode="cover"
-        style={{ width: "100%", height: "100%" }}
-      />
-      <View
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          backgroundColor: "rgba(20, 17, 13, 0.12)",
-        }}
-      />
+      {source ? (
+        <>
+          <Image
+            source={source}
+            resizeMode="cover"
+            style={{ width: "100%", height: "100%" }}
+          />
+          <View
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
+              backgroundColor: "rgba(20, 17, 13, 0.12)",
+            }}
+          />
+        </>
+      ) : null}
       <View
         style={{
           position: "absolute",
@@ -391,7 +392,9 @@ function SelectedCoverObject({
           style={{
             alignSelf: "flex-start",
             borderRadius: 14,
-            backgroundColor: "rgba(255, 253, 251, 0.88)",
+            backgroundColor: source
+              ? "rgba(255, 253, 251, 0.88)"
+              : colors.surface,
             paddingHorizontal: spacing.sm,
             paddingVertical: spacing.xxs,
           }}
@@ -412,11 +415,11 @@ function SelectedCoverObject({
         <Text
           selectable={false}
           style={{
-            color: colors.white,
+            color: source ? colors.white : colors.ink,
             fontFamily: fonts.display,
             fontSize: 30,
             lineHeight: 36,
-            textShadowColor: "rgba(0, 0, 0, 0.34)",
+            textShadowColor: source ? "rgba(0, 0, 0, 0.34)" : "transparent",
             textShadowOffset: { width: 0, height: 1 },
             textShadowRadius: 8,
           }}

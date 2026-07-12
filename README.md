@@ -33,6 +33,8 @@ Mobile uses `EXPO_PUBLIC_WEB_URL` when displaying, opening, copying, or sharing 
 
 Set `EXPO_PUBLIC_ENABLE_DEMO_OWNER=true` only for local demos that should show the one-tap seeded owner sign-in. Use `false` or omit it for pitch builds that should present only registration and login.
 
+Public discovery is disabled by default. Show the Explore tab only in an environment where both `EXPO_PUBLIC_ENABLE_PUBLIC_DISCOVERY=true` in the mobile build and `CAPSULE_PUBLIC_DISCOVERY=true` on the API are deliberately configured. Keep both false for the first private, invite-only release.
+
 Start Metro for a development build:
 
 ```bash
